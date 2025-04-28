@@ -323,6 +323,8 @@ pub enum DataFileFormat {
     Orc,
     /// Parquet file format: <https://parquet.apache.org/>
     Parquet,
+    /// Binary file format.
+    Bin,
 }
 
 impl FromStr for DataFileFormat {
@@ -333,6 +335,7 @@ impl FromStr for DataFileFormat {
             "avro" => Ok(Self::Avro),
             "orc" => Ok(Self::Orc),
             "parquet" => Ok(Self::Parquet),
+            "bin" => Ok(Self::Bin),
             _ => Err(Error::new(
                 ErrorKind::DataInvalid,
                 format!("Unsupported data file format: {}", s),
@@ -347,6 +350,7 @@ impl std::fmt::Display for DataFileFormat {
             DataFileFormat::Avro => write!(f, "avro"),
             DataFileFormat::Orc => write!(f, "orc"),
             DataFileFormat::Parquet => write!(f, "parquet"),
+            DataFileFormat::Bin => write!(f, "bin"),
         }
     }
 }
