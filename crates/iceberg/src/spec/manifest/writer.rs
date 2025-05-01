@@ -216,6 +216,8 @@ impl ManifestWriter {
     /// number will be the provided data sequence number. The entry's file sequence number will be
     /// assigned at commit.
     pub fn add_file(&mut self, data_file: DataFile, sequence_number: i64) -> Result<()> {
+        println!("\n\nadd file: {:?}\n\n", data_file);
+
         self.check_data_file(&data_file)?;
         let entry = ManifestEntry {
             status: ManifestStatus::Added,
