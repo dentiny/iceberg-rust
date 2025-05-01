@@ -92,6 +92,10 @@ impl<T: LocationGenerator, F: FileNameGenerator> FileWriterBuilder for ParquetWr
         let path = self
             .location_generator
             .generate_location(&self.file_name_generator.generate_file_name());
+
+        let path =
+            "s3://test-bucket/default/test_table/data/4fca0766-1e16-4019-85cb-4171614c5da0-00000.parquet"
+                .to_string();
         println!("parquet file path = {}", path);
 
         let out_file = self.file_io.new_output(path)?;
