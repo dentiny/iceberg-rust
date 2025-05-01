@@ -88,10 +88,13 @@ impl<T: LocationGenerator, F: FileNameGenerator> FileWriterBuilder for ParquetWr
 
     async fn build(self) -> crate::Result<Self::R> {
         let written_size = Arc::new(AtomicI64::new(0));
-        let out_file = self.file_io.new_output(
-            self.location_generator
-                .generate_location(&self.file_name_generator.generate_file_name()),
-        )?;
+
+        let path = self
+            .location_generator
+            .generate_location(&self.file_name_generator.generate_file_name());
+        println!("parquet file path = {}", path);
+
+        let out_file = self.file_io.new_output(path)?;
 
         Ok(ParquetWriter {
             schema: self.schema.clone(),
