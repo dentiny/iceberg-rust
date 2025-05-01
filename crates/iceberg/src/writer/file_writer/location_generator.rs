@@ -66,6 +66,11 @@ impl DefaultLocationGenerator {
             }
         };
 
+        println!(
+            "\n\nwhen constructing location generator, table loc = {}, rel dir path = {}\n\n",
+            table_location, rel_dir_path
+        );
+
         Ok(Self {
             dir_path: format!("{}{}", table_location, rel_dir_path),
         })
