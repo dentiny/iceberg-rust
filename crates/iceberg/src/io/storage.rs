@@ -55,6 +55,11 @@ impl Storage {
         let (scheme_str, props) = file_io_builder.into_parts();
         let scheme = Self::parse_scheme(&scheme_str)?;
 
+        println!(
+            "scheme str = {:?}, scheme = {:?}, prop = {:?}",
+            scheme_str, scheme, props,
+        );
+
         match scheme {
             #[cfg(feature = "storage-memory")]
             Scheme::Memory => Ok(Self::Memory(super::memory_config_build()?)),

@@ -197,7 +197,12 @@ impl FileIOBuilder {
 
     /// Builds [`FileIO`].
     pub fn build(self) -> Result<FileIO> {
+        println!("\n\nbefore build file io from fileio builder\n\n");
+
         let storage = Storage::build(self.clone())?;
+
+        println!("\n\nafter build file io from fileio builder\n\n");
+
         Ok(FileIO {
             builder: self,
             inner: Arc::new(storage),
