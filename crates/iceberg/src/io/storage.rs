@@ -119,6 +119,11 @@ impl Storage {
             }
             #[cfg(feature = "storage-s3")]
             Storage::S3 { scheme_str, config } => {
+                println!(
+                    "when creating s3 operator, scheme str = {:?}, config = {:?}",
+                    scheme_str, config
+                );
+
                 let op = super::s3_config_build(config, path)?;
                 let op_info = op.info();
 
