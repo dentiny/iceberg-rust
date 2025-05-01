@@ -534,7 +534,7 @@ fn data_file_fields_v2(partition_type: &StructType) -> Vec<NestedFieldRef> {
         FIRST_ROW_ID.clone(),
         REFERENCE_DATA_FILE.clone(),
         CONTENT_OFFSET.clone(),
-        CONTENT_SIZE_IN_BYTES(),
+        CONTENT_SIZE_IN_BYTES.clone(),
     ]
 }
 
