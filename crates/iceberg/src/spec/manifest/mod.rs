@@ -71,6 +71,12 @@ impl Manifest {
             }
             FormatVersion::V2 => {
                 let schema = manifest_schema_v2(&partition_type)?;
+
+                println!(
+                    "\n\nwhen read manifest schema = {:?}, metadata schema = {:?}\n\n",
+                    schema, metadata.schema
+                );
+
                 let reader = AvroReader::with_schema(&schema, bs)?;
                 reader
                     .into_iter()
