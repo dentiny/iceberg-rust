@@ -68,6 +68,8 @@ pub const S3_DISABLE_CONFIG_LOAD: &str = "s3.disable-config-load";
 
 /// Parse iceberg props to s3 config.
 pub(crate) fn s3_config_parse(mut m: HashMap<String, String>) -> Result<S3Config> {
+    println!("before s3 config parse when constructing file io {:?}", m);
+
     let mut cfg = S3Config::default();
     if let Some(endpoint) = m.remove(S3_ENDPOINT) {
         cfg.endpoint = Some(endpoint);
@@ -129,6 +131,8 @@ pub(crate) fn s3_config_parse(mut m: HashMap<String, String>) -> Result<S3Config
                 ));
             }
         }
+
+        println!("after s3 config parse when constructing file io {:?}", m);
     };
 
     if let Some(allow_anonymous) = m.remove(S3_ALLOW_ANONYMOUS) {
