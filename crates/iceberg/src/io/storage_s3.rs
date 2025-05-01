@@ -152,6 +152,8 @@ pub(crate) fn s3_config_parse(mut m: HashMap<String, String>) -> Result<S3Config
 
 /// Build new opendal operator from give path.
 pub(crate) fn s3_config_build(cfg: &S3Config, path: &str) -> Result<Operator> {
+    println!("when build s3 config, path = {:?}", path);
+
     let url = Url::parse(path)?;
     let bucket = url.host_str().ok_or_else(|| {
         Error::new(
