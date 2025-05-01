@@ -131,9 +131,9 @@ pub(crate) fn s3_config_parse(mut m: HashMap<String, String>) -> Result<S3Config
                 ));
             }
         }
-
-        println!("after s3 config parse when constructing file io {:?}", m);
     };
+
+    println!("after s3 config parse when constructing file io {:?}", m);
 
     if let Some(allow_anonymous) = m.remove(S3_ALLOW_ANONYMOUS) {
         if is_truthy(allow_anonymous.to_lowercase().as_str()) {
@@ -150,6 +150,8 @@ pub(crate) fn s3_config_parse(mut m: HashMap<String, String>) -> Result<S3Config
             cfg.disable_config_load = true;
         }
     };
+
+    println!("s3 config = {:?}", cfg);
 
     Ok(cfg)
 }

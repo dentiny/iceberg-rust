@@ -201,7 +201,10 @@ impl FileIOBuilder {
 
         let storage = Storage::build(self.clone())?;
 
-        println!("\n\nafter build file io from fileio builder\n\n");
+        println!(
+            "\n\nafter build file io from fileio builder: {:?}\n\n",
+            storage
+        );
 
         Ok(FileIO {
             builder: self,
