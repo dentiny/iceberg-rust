@@ -329,6 +329,14 @@ impl ManifestWriter {
                 self.min_seq_num = Some(self.min_seq_num.map_or(seq_num, |v| min(v, seq_num)));
             }
         }
+
+        println!(
+            "add entry into manigfest entries: {:?} at {}:{}",
+            entry,
+            file!(),
+            line!()
+        );
+
         self.manifest_entries.push(entry);
         Ok(())
     }
