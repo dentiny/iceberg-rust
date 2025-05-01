@@ -380,6 +380,8 @@ impl ManifestWriter {
         let partition_summary = self.construct_partition_summaries(&partition_type)?;
         // Write manifest entries
         for entry in std::mem::take(&mut self.manifest_entries) {
+            println!("write entry: {:?}", entry.clone());
+
             let value = match self.metadata.format_version {
                 FormatVersion::V1 => to_value(ManifestEntryV1::try_from(entry, &partition_type)?)?
                     .resolve(&avro_schema)?,
