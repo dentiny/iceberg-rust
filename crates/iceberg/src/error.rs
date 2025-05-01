@@ -22,7 +22,7 @@ use std::fmt::{Debug, Display, Formatter};
 use chrono::{DateTime, TimeZone as _, Utc};
 
 /// Result that is a wrapper of `Result<T, iceberg::Error>`
-pub type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, crate::Error>;
 
 /// ErrorKind is all kinds of Error of iceberg.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
