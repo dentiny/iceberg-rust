@@ -3533,6 +3533,7 @@ dependencies = [
  "iceberg-catalog-memory",
  "iceberg_test_utils",
  "itertools 0.13.0",
+ "mockall",
  "moka",
  "murmur3",
  "num-bigint",
