@@ -62,8 +62,12 @@ impl PuffinWriter {
         })
     }
 
-    /// Adds blob to Puffin file
-    pub async fn add(&mut self, blob: Blob, compression_codec: CompressionCodec) -> Result<()> {
+    /// Adds blob to Puffin file, and return (start offset, blob size).
+    pub async fn add(
+        &mut self,
+        blob: Blob,
+        compression_codec: CompressionCodec,
+    ) -> Result<(u64 /*blob start offset*/, u64 /*blob size*/)> {
         self.write_header_once().await?;
 
         let offset = self.num_bytes_written;
@@ -81,7 +85,7 @@ impl PuffinWriter {
             properties: blob.properties,
         });
 
-        Ok(())
+        Ok((offset, length))
     }
 
     /// Finalizes the Puffin file
@@ -174,8 +178,15 @@ mod tests {
         let output_file = file_io.new_output(temp_path)?;
 
         let mut writer = PuffinWriter::new(&output_file, properties, false).await?;
+        let mut expected_start_offset: u64 = 0;
         for (blob, compression_codec) in blobs {
-            writer.add(blob, compression_codec).await?;
+            let (actual_start_offset, blob_size) = writer.add(blob, compression_codec).await?;
+            assert_eq!(
+                expected_start_offset, actual_start_offset,
+                "After a blob write, expected blob start offset is {}, actual start offset is {}",
+                expected_start_offset, actual_start_offset
+            );
+            expected_start_offset += blob_size;
         }
         writer.close().await?;
 
