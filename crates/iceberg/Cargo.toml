@@ -62,6 +62,7 @@ derive_builder = { workspace = true }
 fnv = { workspace = true }
 futures = { workspace = true }
 itertools = { workspace = true }
+mockall = { workspace = true }
 moka = { version = "0.12.10", features = ["future"] }
 murmur3 = { workspace = true }
 num-bigint = { workspace = true }
@@ -91,7 +92,6 @@ ctor = { workspace = true }
 expect-test = { workspace = true }
 iceberg-catalog-memory = { workspace = true }
 iceberg_test_utils = { path = "../test_utils", features = ["tests"] }
-mockall = { workspace = true }
 pretty_assertions = { workspace = true }
 rand = { workspace = true }
 tempfile = { workspace = true }
