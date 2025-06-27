@@ -207,7 +207,7 @@ impl Storage {
 
         // Transient errors are common for object stores; however there's no
         // harm in retrying temporary failures for other storage backends as well.
-        let operator = operator.layer(RetryLayer::new());
+        // let operator = operator.layer(RetryLayer::new());
 
         Ok((operator, relative_path))
     }
