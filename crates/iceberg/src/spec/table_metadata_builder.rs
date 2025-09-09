@@ -604,6 +604,8 @@ impl TableMetadataBuilder {
                 self.last_added_schema_id = Some(new_schema_id);
             }
 
+            println!("== last added schema id = {:?}", self.last_added_schema_id);
+
             return Ok(self);
         }
 
@@ -626,6 +628,8 @@ impl TableMetadataBuilder {
 
         self.last_added_schema_id = Some(new_schema_id);
 
+        println!("== last added schema id = {:?}", self.last_added_schema_id);
+
         Ok(self)
     }
 
@@ -646,6 +650,8 @@ impl TableMetadataBuilder {
             })?;
         };
         let schema_id = schema_id; // Make immutable
+
+        println!("to set schema id = {}", schema_id);
 
         if schema_id == self.metadata.current_schema_id {
             return Ok(self);
