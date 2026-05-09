@@ -506,7 +506,7 @@ impl PartitionFieldStats {
         Self {
             partition_type,
             contains_null: false,
-            contains_nan: Some(false),
+            contains_nan: None,
             upper_bound: None,
             lower_bound: None,
         }
